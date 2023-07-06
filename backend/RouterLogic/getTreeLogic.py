@@ -1,3 +1,4 @@
+import json
 import subprocess
 import tempfile
 
@@ -9,9 +10,11 @@ async def getTreeLogic(file: UploadFile):
     data_str = data.decode()
     lines = data_str.splitlines()
     unprocessed_deps_tree = get_pipgrip_output(lines)
+    unprocessed_deps_tree = json.loads(unprocessed_deps_tree)
     edges = []
     nodes = {}
     parse_data(tree=unprocessed_deps_tree, nodes=nodes, edges=edges, depth=0, node_id=0)
+    nodes, edges = structurize_data(nodes=nodes, edges=edges)
     return {
         "success": True,
         "nodes": unprocessed_deps_tree,
@@ -49,3 +52,19 @@ def parse_data(tree, nodes, edges, depth, node_id, parent=None):
                 'from': 0,
                 'to': nodes[node_name][0]
             })
+
+
+def structurize_data(nodes, edges):
+    nodes_dup = [{'id': 0, 'label': 'requirements.txt', 'level': 0}]
+    for node in nodes:
+        nodes_dup.append({
+            'id': nodes[node][0],
+            'label': node,
+            'level': nodes[node][1]
+        })
+    new_edges = []
+    for edge in edges:
+        if edge not in new_edges:
+            new_edges.append(edge)
+
+    return nodes_dup, new_edges
