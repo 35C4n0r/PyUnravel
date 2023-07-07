@@ -1,15 +1,22 @@
 "use client"
 import Navbar from "@/components/Navbar";
-import {Provider, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import FileInput from "@/components/FileInput";
+import DepTree from "@/components/DepTree";
 
 export default function Unravel() {
-    const {isLoading} = useSelector((state) => state.chart);
+    const {isLoading, nodes} = useSelector((state) => state.chart);
 
     return (
         <main>
             <Navbar/>
             <FileInput/>
+            {nodes.length === 0 ?
+                <p className={"text-4xl flex items-center justify-center mt-48 animate-pulse text-center"}>Start
+                    Unraveling</p> : isLoading ?
+                    <p className={"text-4xl flex items-center justify-center mt-48 animate-pulse text-center"}> Loading </p> :
+                    <div className={"overflow-auto"}><DepTree/></div>
+            }
         </main>
     )
 }
