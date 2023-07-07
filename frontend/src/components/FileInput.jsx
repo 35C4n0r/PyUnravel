@@ -7,11 +7,14 @@ export default function FileInput() {
     const {isLoading} = useSelector((state) => state.chart);
     const dispatch = useDispatch();
     let [file, setFile] = useState(new FormData());
+    const URL = process.env.NEXT_PUBLIC_API_HOST
+    console.log(URL)
 
     async function handleFileSubmit(event) {
         event.preventDefault();
         dispatch(setLoading());
-        let data = await fetch("http://localhost:8000/unravel", {
+
+        let data = await fetch(`${URL}/unravel`, {
             body: file,
             method: "POST"
         })
