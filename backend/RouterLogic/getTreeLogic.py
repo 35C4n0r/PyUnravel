@@ -2,7 +2,7 @@ import json
 import subprocess
 import tempfile
 
-from fastapi import UploadFile
+from fastapi import UploadFile, HTTPException
 import pipgrip
 
 
@@ -24,7 +24,7 @@ async def getTreeLogic(file: UploadFile):
 
 
 def get_pipgrip_output(lines):
-    arg = ['pipgrip', '--tree', '--json']
+    arg = ['python', '-m', 'pipgrip', '--tree', '--json']
     for line in lines:
         line = line.strip("\n")
         arg.append(line)
