@@ -3,6 +3,7 @@ import subprocess
 import tempfile
 
 from fastapi import UploadFile
+import pipgrip
 
 
 async def getTreeLogic(file: UploadFile):
@@ -27,7 +28,7 @@ def get_pipgrip_output(lines):
     for line in lines:
         line = line.strip("\n")
         arg.append(line)
-    result = subprocess.run(arg, stdout=subprocess.PIPE)
+    result = subprocess.run(arg, stdout=subprocess.PIPE, shell=True)
     return result.stdout.decode('utf-8')
 
 
