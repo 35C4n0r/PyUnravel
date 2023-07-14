@@ -11,7 +11,7 @@ export default function Unravel() {
         <main>
             <Navbar/>
             <FileInput/>
-            {nodes.length && !isL === 0 ?
+            {nodes.length === 0 && !isLoading?
                 <p className={"text-4xl flex items-center justify-center mt-48 animate-pulse text-center"}>Start
                     Unraveling</p> : isLoading ?
                     <p className={"text-4xl flex items-center justify-center mt-48 animate-pulse text-center"}> Loading </p> :
