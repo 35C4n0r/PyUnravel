@@ -5,7 +5,7 @@ PyUnravel Frontend
 Overview
 -----------
 
-This project uses NEXT and vis-network library to visualize dependency trees.
+This project uses NEXT, TailwindCSS and vis-network library to visualize dependency trees.
 
 The core of this project is the `DepTree` component which utilizes `vis-network` and `vis-data` libraries to visualize dependency graphs. It has been one of the most enlightening and challenging pieces I've tackled in this project.
 
