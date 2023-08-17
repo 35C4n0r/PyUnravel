@@ -14,8 +14,8 @@ Deployment
 
 `pipgrip` library is the core of this project, and it uses multiprocessing queues to resolve dependencies.
 Unfortunately because of this I wasn't able to host my backend anywhere, as none of the free hosting platforms supports multithreading.
-This is the deployment link for the frontend, just click the `Unravel` button with or without the file, and it will fetch dummy data from backend,
-this is just for displaying purposes.
+This is the deployment link for the frontend, **just click the `Unravel` button with or without the file, and it will fetch dummy data from backend,
+this is just for displaying purposes**.
 
 
 Deployment url with dummy data in backend: https://pyunravel.vercel.app/
